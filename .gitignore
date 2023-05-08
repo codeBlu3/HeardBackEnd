@@ -1,0 +1,4 @@
+postgresdata/
+mongodata/
+node_modules/
+variables.env
