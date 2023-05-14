@@ -3,15 +3,16 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { Connection} from "typeorm";
 
-import  {Foodie} from "./models/foodie";
-import  {Store} from "./models/store";
-import  {Recipe}  from "./models/recipe";
+//import  {Foodie} from "./models/foodie";
+import  {UserAccount} from "./models/UserAccount";
+//import  {Store} from "./models/store";
+//import  {Recipe}  from "./models/recipe";
 import  {Conversation}  from "./models/conversation";
 //import  {Image} from "./models/image";
-import  {Review} from "./models/review";
+//import  {Review} from "./models/review";
 
 const pgModel= [
-    Foodie,
+    UserAccount,
 //    Store,
     ]
 

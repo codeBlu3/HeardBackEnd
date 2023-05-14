@@ -258,6 +258,7 @@ res.json({status: "User was not Created",});
       message: 'success!', 
 //      userToken:  req.user
       userToken:  req.user.userToken,
+      username:  req.user.username,
       userID:  req.user.userID,
     })
     }

@@ -28,11 +28,14 @@ async function main(){
   const conn = await createConnection(mgConfig);
   const convoRepository  = getMongoRepository(Conversation,'dbMgCon')
 // Socket 
+  const SERVERHOSTNAME = process.env.SERVERHOSTNAME;
   const app = express()
   app.use(cors());
+  app.use(cors({ origin: `http://${SERVERHOSTNAME}:19006`, credentials: true }))
   const server = http.createServer(app)
-  const io = new Server(server,  { cors: { origin: "http://localhost:19006", credentials:  true,    methods: ["GET", "POST"]  }})
+  const io = new Server(server,  { cors: { origin: `http://${SERVERHOSTNAME}:19006`, credentials:  true,    methods: ["GET", "POST"]  }})
 
+  //const io = new Server(server,  { cors: { origin: "http://localhost:19006", credentials:  true,    methods: ["GET", "POST"]  }})
 /*
   io.use((socket:any, next) => {
     const username = socket.handshake.auth.username;
@@ -48,6 +51,7 @@ async function main(){
 
   io.on("connection", (socket:ISocket) => {
   console.log(socket)
+  console.log('hi eph')
   console.log(`User Connected: ${socket.id}`);
   socket.onAny((event, ...args) => {  console.log(event, args);});
   // either with send()

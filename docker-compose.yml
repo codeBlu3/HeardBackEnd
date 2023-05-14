@@ -19,16 +19,16 @@ services:
       - "./postgresdata:/var/lib/postgresql/data"
 
 # mongo db default db, doesn't authenticate
-#  mgdb: 
-#    image: "mongo:latest"
+  mgdb: 
+    image: "mongo:latest"
 #    restart: "always"
-#    ports:
-#      - "27017:27017"
-#    env_file:
-#      - "variables.env"
-#    volumes:
-#      - "./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro"
-#      - "./mongodata:/data/db"
+    ports:
+      - "27017:27017"
+    env_file:
+      - "variables.env"
+    volumes:
+      - "./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro"
+      - "./mongodata:/data/db"
 
 
 # pgadmin4 docker image is not working -- restart was needed haha 
@@ -45,19 +45,19 @@ services:
      
 
 #----- web servers
-#  api:
-#    build: "./api/."
-#    ports:
-#      - "7000:7000"
-#    depends_on:
-#      - pgdb 
-#      - mgdb 
-#    env_file:
-#      - "variables.env"
+  api:
+    build: "./api/."
+    ports:
+      - "7000:7000"
+    depends_on:
+      - pgdb 
+      - mgdb 
+    env_file:
+      - "variables.env"
 #    environment:
 #      - NODE_PORT: *DNODE_PORT
-#    volumes:
-#      - "./api/src:/usr/src/app/src"
+    volumes:
+      - "./api/src:/usr/src/app/src"
 
 
 
@@ -86,15 +86,15 @@ services:
       - "./auth/src:/usr/src/app/src"
 
 # socket
-#  socket:
-#    build: "./socket/."
-#    ports:
-#      - "5000:5000"
-#    depends_on:
-#      - pgdb 
-#      - mgdb 
-#    env_file:
-#      - "variables.env"
-#    volumes:
-#      - "./socket/src:/usr/src/app/src"
+  socket:
+    build: "./socket/."
+    ports:
+      - "5000:5000"
+    depends_on:
+      - pgdb 
+      - mgdb 
+    env_file:
+      - "variables.env"
+    volumes:
+      - "./socket/src:/usr/src/app/src"
 #

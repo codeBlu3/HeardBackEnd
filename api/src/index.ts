@@ -17,8 +17,9 @@ import { ApolloServer } from "apollo-server"
 import { buildSchema } from "type-graphql"
 
 //resolvers
-import { RecipeResolver} from "./resolvers/recipe-resolver"
+//import { RecipeResolver} from "./resolvers/recipe-resolver"
 import { ConversationResolver} from "./resolvers/conversation-resolver"
+import { UserResolver} from "./resolvers/userinfo-resolver"
 
 // main 
 async function main() {
@@ -26,12 +27,8 @@ async function main() {
     const conns = await createConnections([pgConfig, mgConfig])
 
     const schema = await buildSchema({
-    	resolvers: [RecipeResolver, ConversationResolver],
+    	resolvers: [UserResolver, ConversationResolver],
     })
-
-    //const convoRep  = getMongoRepository(Conversation,'dbMgCon')
-    //const convoList = await convoRep.find({select: ['conversationID']})
-    //console.log(convoList)
 
 
     const server = new ApolloServer({ schema })
@@ -52,6 +49,10 @@ import {Review} from  './models/review'
     const recipeRep  = conn.getRepository(Recipe)
     const storeRep  = conn.getRepository(Store)
     const imageRep  = conn.getRepository(Image)
+    //const convoRep  = getMongoRepository(Conversation,'dbMgCon')
+    //const convoList = await convoRep.find({select: ['conversationID']})
+    //console.log(convoList)
+
 
 
 
